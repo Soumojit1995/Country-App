@@ -1,3 +1,47 @@
-<p>
-  all-countries works!
-</p>
+<div class="container-fluid" style="background-color: #F6F2E5;">
+  <div class="container">
+
+  
+    <div class="row">
+      <div class="text-center col-sm-12" *ngIf="allCountries.length > 0 && isVisible">
+        <div style="margin: 2%">
+          <p class="m-2 current-region" style="color: #000000">{{currentRegion}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="allCountries.length > 0 && isVisible">
+      <div [@fadeIn]="''" *ngFor="let country of allCountries" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 card-holder-no-outline">
+        <div class="card-container" [routerLink]="['/country',country['alpha3Code']]" style="margin: 2%;"
+             title="{{'Click here to get details of '+country.name}}">
+          <div class="card">
+            <img class="flag-control" [attr.src]="country['flag']" width="100%" alt="question image"
+                 style="width:100%">
+            <div class="card-container text-center bg-dark">
+              <p class="font-weight-bold">
+                {{country['name']}}
+              </p>
+              <p class="text-white font-weight-bold">
+                Capital : {{country['capital']}}
+              </p>
+              <p class="text-white font-weight-bold">
+                Region :{{country['region']}}
+              </p>
+              <p class="text-white font-weight-bold">
+                Sub Region : {{country['subregion']}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="allCountries.length > 0 && isVisible">
+      <div class="text-center col-sm-12">
+        <button class="btn btn-primary m-5" (click)="goBack()">Go Back</button>
+      </div>
+    </div>
+  </div>
+
+
+</div>

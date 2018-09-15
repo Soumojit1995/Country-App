@@ -1,3 +1,133 @@
-<p>
-  country-details works!
-</p>
+<div class="container-fluid" *ngIf="isVisible" style="background-color: #F6F2E5;">
+
+
+  <div class="row">
+    <div class="col-sm-12 m-auto bg-dark text-center p-4">
+      <p class="m-2" style="font-size: 30px;color: #ffffff"><b>{{currentCountry['name']}}</b></p>
+      <img class="img-fluid big-flag-control" attr.src="{{currentCountry['flag']}}"
+           title="{{currentCountry['name'] + 'flag'}}"
+           alt="{{currentCountry['name'] + 'flag'}}" width="500" height="300">
+    </div>
+
+    <div class="col-sm-12 text-center">
+      <div class="m-1" style="border: 2px solid #000000; font-size: 100px ">
+        <p class="m-1"><b>Capital of The Country</b> : <i>{{currentCountry['capital']}}</i></p>
+        <p class="m-1"><b>Region: </b> : <i>{{currentCountry['region']}}</i></p>
+        <p class="m-1"><b>Country Current Population</b> : <i>{{currentCountry['population']}}</i> million</p>
+        <p class="m-1"><b>Area of the Country is </b> : <i>{{currentCountry['area']}}</i> KM<sup>2</sup></p>
+        <p class="m-1"><b>Sub Region of The Country </b> : <i>{{currentCountry['subregion']}}</i></p>
+        <p class="m-1"><b>All Time Zones</b> : <i>{{timeZones}}</i></p>
+
+
+        <p class="m-1"><b>Top Level Domain</b> : <i>{{topLevelDomain}}</i></p>
+        <p class="m-1"><b>Alpha 2 Code</b> : <i>{{currentCountry['alpha2Code']}}</i></p>
+        <p class="m-1"><b>Alpha 3 Code</b> : <i>{{currentCountry['alpha3Code']}}</i></p>
+        <p class="m-1"><b>Calling Codes</b> : <i>{{callingCodes}}</i></p>
+        
+        <p class="m-1"><b>Alternate Spellings</b> : <i>{{altSpellings}}</i></p>
+        
+        
+
+        <p class="m-1"><b>Latitude and Longitude</b> : <i>{{latLang}}</i></p>
+        <p class="m-1"><b>Demonym of the Country</b> : <i>{{currentCountry['demonym']}}</i></p>
+
+        <p class="m-1"><b>Gini index</b> : <i>{{currentCountry['gini']}}</i></p>
+
+        <p class="m-1"><b>Native Name of The Country</b> : <i>{{currentCountry['nativeName']}}</i></p>
+        <p class="m-1"><b>Numeric Code of the Country</b> : <i>{{currentCountry['numericCode']}}</i></p>
+        <p class="m-1"><b>Country CIOC</b> : <i>{{currentCountry['cioc']}}</i></p>
+      </div>
+    </div>
+  </div>
+<div class="row m-1" style="border: 2px solid #000000">
+        <div class="text-center col-sm-12"> 
+          <div *ngIf="currentCountry['currencies'].length > 0" class="text-center col-sm-12">
+           <p class="m-2" style="font-size: 1.5em"><b>--: Currency :--</b></p>
+         </div>
+         <div *ngFor="let cur of currentCountry['currencies']" class="col-sm-12 text-center m-auto"
+             >
+           <p><b>Currency Code</b> : {{cur['code']}}</p>
+           <p><b>Currency Name</b> : {{cur['name']}}</p>
+           <p><b>Currency Symbol</b> : {{cur['symbol']}}</p>
+         </div>
+         </div>    
+</div>
+<div class="row m-1" style="border: 2px solid #000000">
+    <div *ngIf="currentCountry['languages'].length > 0" class="text-center col-sm-12">
+      <p class="m-2" style="font-size: 1.5em"><b>--: Country official Languages :--</b></p>
+    </div>
+    <div *ngFor="let lan of currentCountry['languages']" class="col-sm-4 m-auto text-center">
+      <p><b>Language Name</b> : {{lan['name']}}</p>
+      <p><b>Language ISO639_1 Code</b> : {{lan['iso639_1']}}</p>
+      <p><b>Language ISO639_2 Code</b> : {{lan['iso639_2']}}</p>
+      <p><b>Language native Name</b> : {{lan['nativeName']}}</p>
+    </div>
+  </div>
+
+  <div class="row m-1" *ngIf="translations(currentCountry['translations']).length > 0"  style="border: 2px solid #000000">
+    <div class="text-center col-sm-12">
+      <p class="m-2" style="font-size: 1.5em"><b>--: Country Name in Different Languages :--</b></p>
+    </div>
+    <div *ngFor="let lang of translations(currentCountry['translations'])" class="col-sm-4 text-center">
+      <p>{{lang + ' : ' + currentCountry['translations'][lang]}}</p>
+    </div>
+  </div>
+  <div class="row m-1" *ngIf="currentCountry['regionalBlocs'].length > 0"  style="border: 2px solid #000000">
+    <div class="text-center col-sm-12">
+      <p class="m-2" style="font-size: 1.5em"><b>Regional Blocks</b></p>
+    </div>
+    <div *ngFor="let blocks of currentCountry['regionalBlocs']" class="col-sm-4 m-auto text-center">
+      <p><b>Block Acronyms</b> : {{blocks['acronym']}}</p>
+      <p><b>Block Name</b> : {{blocks['name']}}</p>
+      <p *ngIf="!(blocks['otherAcronyms']==='')"><b>Other Acronyms</b> : {{blocks['otherAcronyms']}}</p>
+      <p *ngIf="blocks['otherNames'].length > 0"><b>Other Names</b></p>
+      <div class="row">
+        <div *ngFor="let otherName of blocks['otherNames']; let first = first; let last = last"
+             class="col-sm-12 text-center">
+          <p class="d-inline-block">{{otherName}}</p>
+          <p class="d-inline-block" *ngIf="last"></p>
+          <p class="d-inline-block" *ngIf="!(last)">, </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Border Countries-->
+  <div *ngIf="borderCountries.length > 0" class="container">
+    <div class="text-center col-sm-12">
+      <p class="m-2" style="font-size: 1.5em"><b>---: Border Countries :---</b></p>
+    </div>
+
+    <div class="row" *ngIf="borderCountries && isVisible">
+      <div *ngFor="let country of borderCountries"
+           class="col-lg-4 col-md-4 col-sm-6 col-xs-12 card-holder-no-outline m-auto">
+        <div class="card-container" [routerLink]="['/country',country['alpha3Code']]" style="margin: 2%;"
+             title="{{'Click here to get details of ' + country.name}}">
+          <div class="card">
+            <img class="flag-control" [attr.src]="country['flag']" width="100%" alt="question image"
+                 style="width:100%">
+            <div class="card-container text-center bg-dark">
+              <p class="font-weight-bold" style="color: #ffffff">
+                {{country['name']}}
+              </p>
+              <p class="text-white font-weight-bold">
+                Capital : {{country['capital']}}
+              </p>
+              <p class="text-white font-weight-bold">
+                Region :{{country['region']}}
+              </p>
+              <p class="text-white font-weight-bold">
+                Sub Region : {{country['subregion']}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row" *ngIf="currentCountry  && isVisible">
+    <div class="text-center col-sm-12">
+      <button class="btn btn-primary m-5" (click)="goBack()">Go Back</button>
+    </div>
+  </div>
+</div>

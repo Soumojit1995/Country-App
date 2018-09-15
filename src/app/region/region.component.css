@@ -1,0 +1,54 @@
+.region-holder {
+    height: 300px;
+  }
+  
+  .as, .af, .am, .oc, .eu {
+    transition-timing-function: ease;
+    transition-duration: 0.3s;
+  }
+  
+  .as:hover, .am:hover, .eu:hover, .af:hover, .oc:hover {
+    -webkit-box-shadow: 0 5px 24px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 5px 24px 2px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 5px 24px 2px rgba(0, 0, 0, 0.75);
+    transform: scale(1.009);
+  
+  }
+  
+  .asia {
+    background: url("/assets/images/asia.png") no-repeat;
+    background-size: cover;
+  }
+  
+  .america {
+    background: url("/assets/images/america.jpg") no-repeat;
+    background-size: cover;
+  }
+  
+  .africa {
+    background: url("/assets/images/africa.jpg") no-repeat;
+    background-size: cover;
+  }
+  
+  .oceania {
+    background: url("/assets/images/oceania.jpg") no-repeat;
+    background-size: cover;
+  }
+  
+  .europe {
+    background: url("/assets/images/europe.jpg") no-repeat;
+    background-size: cover;
+  }
+  
+  .western, .pacific {
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    text-shadow: -1px -1px 0 #212121,
+    1px -1px 0 #212121,
+    -1px 1px 0 #212121,
+    1px 1px 0 #212121;
+  }
+  
+  

@@ -1,3 +1,107 @@
-
-
-<router-outlet></router-outlet>
+<!-- shell page -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+    <!-- Brand -->
+    <a class="navbar-brand text-white" [routerLink]="['/home']">Country Explorer</a>
+  
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a style="text-decoration: none;color: #ffffff;font-weight: bold" [routerLink]="['/home']">Home</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item m-1">
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#currenciesAll"
+                  data-backdrop="static" data-keyboard="false" (click)="CurrencyFilter()">Currency Filter
+          </button>
+        </li>
+        <li class="nav-item m-1">
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#languagesAll"
+                  data-backdrop="static" data-keyboard="false" (click)="LanguageFilter()">Language Filter
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- currency modal -->
+  <div class="modal fade" id="currenciesAll" role="dialog">
+    <div class="modal-dialog modal-lg">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+  
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="text-center">Select a currency to get countries</h4>
+              </div>
+              <div *ngFor="let item of allCurrency" class="col-md-2 col-6">
+                <input type="radio" name="options" (click)="codeForRouting = item">{{item}}
+              </div>
+  
+            </div>
+  
+          </div>
+        </div>
+        <div class="modal-body">
+  
+        </div>
+        <div class="modal-footer">
+          <button (click)="showCountriesByCurrencyFiltered()" type="button" class="btn btn-default bg-primary" data-dismiss="modal">
+            Submit
+          </button>
+          <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close
+          </button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  <!-- language modal -->
+  <div class="modal fade" id="languagesAll" role="dialog">
+    <div class="modal-dialog modal-lg">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+  
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="text-center">Select a language to get countries</h4>
+              </div>
+              <div *ngFor="let item of allLanguages" class="col-md-2">
+                <input type="radio" name="options" (click)="codeForRouting = item">{{item}}
+              </div>
+  
+            </div>
+  
+          </div>
+        </div>
+        <div class="modal-body">
+  
+        </div>
+        <div class="modal-footer">
+          <button (click)="showCountriesByLanguageFiltered()" type="button" class="btn btn-default bg-primary" data-dismiss="modal">
+            Submit
+          </button>
+          <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  <router-outlet></router-outlet>
+  

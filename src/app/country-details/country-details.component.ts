@@ -31,8 +31,6 @@ export class CountryDetailsComponent implements OnInit {
       this.currentCountry = this.api.getCountryDetails(param.get('alphaCode')).subscribe(data => {
         console.log(data);
         this.currentCountry = data;
-
-
         this.getTopLevelDomain(this.currentCountry);
         this.getCallingCodes(this.currentCountry);
         this.getAltSpellings(this.currentCountry);
@@ -48,16 +46,16 @@ export class CountryDetailsComponent implements OnInit {
       console.log('no param found');
     });
   }
-
+// get TopLevelDomain and add comma
   public getTopLevelDomain(currentObj: any) {
     let temp = '';
     for (let i = 0; i < currentObj.topLevelDomain.length; i++) {
-      const comma = i === currentObj.topLevelDomain.length - 1 ? ' ' : ' ';
+      const comma = i === currentObj.topLevelDomain.length - 1 ? ' ' : ', ';
       temp += `${currentObj.topLevelDomain[i]}${comma}`;
     }
     this.topLevelDomain = temp;
   }
-
+// get Calling Codes and add comma
   public getCallingCodes(currentObj: any) {
     let temp = '';
     for (let i = 0; i < currentObj.callingCodes.length; i++) {
@@ -67,7 +65,7 @@ export class CountryDetailsComponent implements OnInit {
     this.callingCodes = temp;
   }
 
-
+// get Alt Spellings and add comma
   public getAltSpellings(currentObj: any) {
     let temp = '';
     for (let i = 0; i < currentObj.altSpellings.length; i++) {
@@ -76,7 +74,7 @@ export class CountryDetailsComponent implements OnInit {
     }
     this.altSpellings = temp;
   }
-
+// get LatLang and add &
   public getLatLang(currentObj: any) {
     let temp = '';
     for (let i = 0; i < currentObj.latlng.length; i++) {
@@ -85,7 +83,7 @@ export class CountryDetailsComponent implements OnInit {
     }
     this.latLang = temp;
   }
-
+// get TimeZones and add comma
   public getTimeZones(currentObj: any) {
     let temp = '';
     for (let i = 0; i < currentObj.timezones.length; i++) {
@@ -94,7 +92,7 @@ export class CountryDetailsComponent implements OnInit {
     }
     this.timeZones = temp;
   }
-
+  // get currencies and add comma
   public getCurrencies(currentObj: any) {
     let temp = '';
     for (let i = 0; i < currentObj.currencies.length; i++) {
@@ -109,7 +107,7 @@ export class CountryDetailsComponent implements OnInit {
     const tempBorder = [];
 
     for (const i of borderCountries) {
-      const info = await this.api.getSingleCountryInfoPromise(i);
+      const info = await this.api.getSingleCountry(i);
       tempBorder.push(info);
     }
     this.borderCountries = tempBorder;

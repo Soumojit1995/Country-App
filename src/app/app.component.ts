@@ -9,7 +9,7 @@ import {Location} from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'Country-App';
-  codeForRouting = '';
+  forRouting = '';
   public allCurrency = [];
   allLanguages = [];
   constructor(private route: ActivatedRoute, private router: Router, private api: ApiService, private location: Location) { }
@@ -19,11 +19,11 @@ export class AppComponent implements OnInit {
 // language filter function
 public LanguageFilter() {
   this.api.getLanguage().subscribe(data => {
-    const lang = data;
+    const language = data;
     let languagePush = [];
-    for ( let i = 0; i < lang.length; i++) {
-    for ( let j = 0; j < lang[i]['languages'].length; j++) {
-    languagePush.push(lang[i]['languages'][j]['iso639_1']);
+    for ( let i = 0; i < language.length; i++) {
+    for ( let j = 0; j < language[i]['languages'].length; j++) {
+    languagePush.push(language[i]['languages'][j]['iso639_1']);
     }
    }
     languagePush = languagePush.filter( function (element) {
@@ -41,11 +41,11 @@ public LanguageFilter() {
 // Currency filter function
 CurrencyFilter() {
   this.api.getCurrencies().subscribe(data => {
-    const lang = data;
+    const currency = data;
     let currenciesPush = [];
-    for ( let i = 0; i < lang.length; i++) {
-    for ( let j = 0; j < lang[i]['currencies'].length; j++) {
-      currenciesPush.push(lang[i]['currencies'][j]['code']);
+    for ( let i = 0; i < currency.length; i++) {
+    for ( let j = 0; j < currency[i]['currencies'].length; j++) {
+      currenciesPush.push(currency[i]['currencies'][j]['code']);
     }
    }
    currenciesPush = currenciesPush.filter( function (element) {
@@ -62,18 +62,18 @@ CurrencyFilter() {
 
 
 
-
+// route all countries page by currencies
     public showCountriesByCurrencyFiltered() {
-      if (this.codeForRouting !== '') {
-        this.router.navigate(['/region', JSON.stringify({'currency': this.codeForRouting})]);
+      if (this.forRouting !== '') {
+        this.router.navigate(['/region', JSON.stringify({'currency': this.forRouting})]);
       } else {
         alert('please select a currency');
       }
     }
-
+// route all countries page by language
     public showCountriesByLanguageFiltered() {
-      if (this.codeForRouting !== '') {
-        this.router.navigate(['/region', JSON.stringify({'language': this.codeForRouting})]);
+      if (this.forRouting !== '') {
+        this.router.navigate(['/region', JSON.stringify({'language': this.forRouting})]);
       } else {
         alert('please select a language');
       }

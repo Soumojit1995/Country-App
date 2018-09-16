@@ -34,13 +34,13 @@ public getCountriesByCurrencies(currencies: string): any {
   return allCountries;
 }
 
-// get single Countries details
+// get single Country details
 public getCountryDetails(alphaCode: string): any {
   const singleCountryDetails = this.httpClient.get(`${this.baseurl}alpha/${alphaCode}`);
   return singleCountryDetails;
 }
-
-public getSingleCountryInfoPromise(alphaCode): any {
+// get Countries details using promise
+public getSingleCountry(alphaCode): any {
   return new Promise((resolve, reject) => {
     this.httpClient.get(`${this.baseurl}alpha/${alphaCode}`).subscribe(data => {
       resolve(data);
